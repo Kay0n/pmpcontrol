@@ -15,6 +15,7 @@
       python -m venv .venv
     fi
     if which zsh &> /dev/null
+    source .venv/bin/activate
     then
         exec zsh
     else
