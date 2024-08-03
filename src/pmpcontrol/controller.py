@@ -9,7 +9,8 @@ PITCH_BEND = 0xE0
 VELOCITY_ON = 127
 VELOCITY_OFF = 0
 MAX_7BIT = 0x7F
-MAX_14BIT = 16383
+# MAX_14BIT = 16383
+MAX_DEVICE_VALUE = 14896 # The device sends a max value of 14896 for some reason
 
 class PMPEvent(Enum):
     """
@@ -83,7 +84,7 @@ class PMPController:
 
     def handle_fader(self, fader_number: int, value: int):
         if 0 <= fader_number < 9:
-            normalized_value = value / MAX_14BIT
+            normalized_value = value / MAX_DEVICE_VALUE
             if self.sync_faders:
                 self.set_fader(fader_number, normalized_value)
             for callback in self.event_callbacks[PMPEvent.FADER]:
@@ -107,7 +108,7 @@ class PMPController:
             `normalized_position (float)`: The position of the fader, between 0 and 1.
         """
         if 0 <= fader_number < 9:
-            value = int(normalized_position * MAX_14BIT)
+            value = int(normalized_position * MAX_DEVICE_VALUE)
             msb = (value >> 7) & MAX_7BIT
             lsb = value & MAX_7BIT
             self.midi_out.send_message([PITCH_BEND + fader_number, lsb, msb])
