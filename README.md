@@ -22,7 +22,7 @@ pip install pmpcontrol
 ## Example Usage
 
 ```python
-from controller import PMPController, PMPEvent
+from pmpcontrol import PMPController, PMPEvent
 
 # Initialize the controller
 controller = PMPController(sync_faders=True)
