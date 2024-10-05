@@ -1,6 +1,6 @@
 [project]
 name = "pmpcontrol"
-version = "0.0.2"
+version = "0.0.3"
 authors = [
   { name="Kay0n", email="kayon5555@gmail.com" },
 ]

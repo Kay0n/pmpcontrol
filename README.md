@@ -68,11 +68,12 @@ The main controller class:
 - `__init__(sync_faders: bool = False)`: Initialize the controller.
 - `connect() -> Tuple[int, int]`: Connect to the Platform M+ device. (Raises `OSError` if Platform M+ device not found)
 - `disconnect()`: Disconnect from the device.
-- `set_fader(fader_number: int, normalized_position: float)`: Set a fader position.
+- `is_connected -> bool`: Returns True if the device is connected
+- `set_fader(fader_number: int, normalized_position: float)`: Set a fader position. (Raises `OSError` if Platform M+ device not found)
 - `get_fader(fader_number: int) -> float`: Get a fader position.
-- `set_button(button_number: int, state: bool)`: Set a button state.
+- `set_button(button_number: int, state: bool)`: Set a button state. (Raises `OSError` if Platform M+ device not found)
 - `get_button(button_number: int) -> bool`: Get a button state.
-- `reset()`: Reset all faders and buttons to their default states.
+- `reset()`: Reset all faders and buttons to their default states. (Raises `OSError` if Platform M+ device not found)
 - `set_fader_sync(sync_faders: bool)`: Enable or disable fader syncing.
 - `add_event_listener(event_type: PMPEvent, callback: Callable)`: Add an event listener callback.
 - `remove_event_listener(event_type: PMPEvent, callback: Callable)`: Remove an event listener callback.
